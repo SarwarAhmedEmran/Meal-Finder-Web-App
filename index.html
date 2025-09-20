@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find Meal For Your Ingredients</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-4zCK9kqNFUR5XcKL9EIRZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div style="text-align:right; margin:1rem;">
+            <label for="theme-picker" style="font-size:1rem;">Theme:</label>
+            <select id="theme-picker" aria-label="Select color theme">
+                <option value="default">Tawny (Default)</option>
+                <option value="blue">Blue</option>
+                <option value="purple">Purple</option>
+                <option value="gold">Gold</option>
+                <option value="yellow">Yellow</option>
+                <option value="black">Black</option>
+            </select>
+        </div>
+
+        <h2 class="title" id="animated-title">
+            <span id="typing-text"></span>
+        </h2>
+        <blockquote>
+            If you can't feed a hundred people, then feed just one.
+            <br />
+            <cite>- Teresa</cite>
+        </blockquote>
+
+        <div class="meal-wrapper">
+            <div class="meal-search" role="search">
+                <!-- // ANIMATION CONTAINER ADDED HERE -->
+                <div class="animation-container">
+                    <img src="images/chicken.png" alt="Cartoon Chicken" class="character chicken-char">
+                    <img src="images/cow.png" alt="Cartoon Cow" class="character cow-char">
+                    <img src="images/curry.png" alt="Chicken Curry" class="curry-image">
+                </div>
+
+
+                <div class="meal-search-box">
+                    <input type="text" class="search-control" placeholder="Enter an ingredient" id="search-input"
+                        aria-autocomplete="list" aria-controls="suggestions-list" aria-haspopup="listbox"
+                        aria-expanded="false" role="combobox" autocomplete="off" aria-activedescendant="" />
+                    <ul id="suggestions-list" role="listbox" class="suggestions" tabindex="-1"></ul>
+                    <button type="submit" class="search-btn btn" id="search-btn" aria-label="Search meals">
+                        🔍
+                    </button>
+                    <button id="dark-mode-toggle" class="btn" aria-pressed="false"
+                        aria-label="Toggle Dark Mode">🌙</button>
+                    <button id="voice-search-btn" class="btn" aria-label="Start Voice Search">🎤</button>
+                </div>
+                <div id="loading-spinner" class="spinner" aria-live="polite" aria-atomic="true" hidden></div>
+
+                <div class="filters">
+                    <select id="filter-category" aria-label="Filter by category">
+                        <option value="">All Categories</option>
+                    </select>
+
+                    <select id="filter-area" aria-label="Filter by area">
+                        <option value="">All Areas</option>
+                    </select>
+
+                    <select id="sort-option" aria-label="Sort meals">
+                        <option value="">Sort By</option>
+                        <option value="name-asc">Name A-Z</option>
+                        <option value="name-desc">Name Z-A</option>
+                    </select>
+                </div>
+            </div>
+            <div class="meal-result" aria-live="polite" aria-atomic="true">
+                <h2 class="title">Your Search Results</h2>
+                <div id="meal" role="list"></div>
+            </div>
+
+            <div class="favorites-section" aria-live="polite" aria-atomic="true">
+                <h3>Your Favorites</h3>
+                <div id="favorites-list"></div>
+            </div>
+
+            <div class="meal-planning-section">
+                <h2>Weekly Meal Plan</h2>
+                <div id="meal-plan-calendar" class="meal-plan-calendar">
+                </div>
+                <button id="generate-list-btn" class="btn">Generate Shopping List</button>
+            </div>
+        </div>
+
+        <div class="meal-details" role="dialog" aria-modal="true" aria-labelledby="recipe-title"
+            aria-describedby="recipe-instructions">
+            <div class="meal-details-content">
+
+            </div>
+        </div>
+
+        <div id="add-to-plan-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="add-to-plan-title">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h3 id="add-to-plan-title">Add Meal to Plan</h3>
+                <p>Which day would you like to add this meal?</p>
+                <div class="day-options">
+                    <button class="day-btn btn" data-day="monday">Monday</button>
+                    <button class="day-btn btn" data-day="tuesday">Tuesday</button>
+                    <button class="day-btn btn" data-day="wednesday">Wednesday</button>
+                    <button class="day-btn btn" data-day="thursday">Thursday</button>
+                    <button class="day-btn btn" data-day="friday">Friday</button>
+                    <button class="day-btn btn" data-day="saturday">Saturday</button>
+                    <button class="day-btn btn" data-day="sunday">Sunday</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="shopping-list-modal" class="modal" role="dialog" aria-modal="true"
+            aria-labelledby="shopping-list-title">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h3 id="shopping-list-title">Shopping List</h3>
+                <ul id="shopping-list-items"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
